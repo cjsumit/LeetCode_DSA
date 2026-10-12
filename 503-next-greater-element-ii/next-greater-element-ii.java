@@ -1,0 +1,15 @@
+class Solution {
+    public int[] nextGreaterElements(int[] arr) {
+        Stack<Integer> st = new Stack<>();
+        int[] ans = new int[arr.length];
+        for(int i =arr.length-1; i>=0; i--) st.push(arr[i]);
+        // st.push(ans[arr.length-1]);
+        for(int i=arr.length-1; i>=0; i--){
+            while(st.size()!=0 && arr[i]>=st.peek()) st.pop();
+            if(st.size()==0) ans[i] = -1;
+            else ans[i] = st.peek();
+            st.push(arr[i]);
+        }
+        return ans;
+    }
+}
